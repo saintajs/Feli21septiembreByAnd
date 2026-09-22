@@ -9,12 +9,30 @@
     <title>Flower</title>
   </head>
   <body class="container">
-    <audio src="sound/ChristianBasso&HaienQiu-Flowers.mp3" autoplay></audio>
+    <audio id="audio" src="sound/flowers.mp3" preload="auto" loop></audio>
+    <div id="letter-btn" class="envelope-btn" onclick="openLetterModal()" title="Toca para abrir la carta">
+      <div class="envelope-icon">
+        <svg viewBox="0 0 64 48" width="56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cuerpo del sobre -->
+          <rect x="2" y="4" width="60" height="40" rx="5" fill="#fffdfa" stroke="#d4af37" stroke-width="2.5"/>
+          <!-- Pliegues interiores -->
+          <path d="M2 44L26 24" stroke="#eab308" stroke-width="2"/>
+          <path d="M62 44L38 24" stroke="#eab308" stroke-width="2"/>
+          <!-- Pliegue inferior -->
+          <path d="M2 44L32 23L62 44" fill="#fef9c3" stroke="#d4af37" stroke-width="2"/>
+          <!-- Solapa superior cerrada -->
+          <path d="M2 4L32 26L62 4" fill="#fef08a" stroke="#d4af37" stroke-width="2.5"/>
+          <!-- Sello de cera en forma de corazón dorado -->
+          <circle cx="32" cy="25" r="8" fill="#eab308"/>
+          <path d="M32 28.5L29.8 26.3C28.2 24.7 28.2 23.4 29 22.5C29.8 21.6 31.1 21.8 32 22.8C32.9 21.8 34.2 21.6 35 22.5C35.8 23.4 35.8 24.7 34.2 26.3L32 28.5Z" fill="#78350f"/>
+        </svg>
+      </div>
+    </div>
     <div id="lyrics">
      
     </div>
-    <h1 class="titulo">Estas flores amarillas son un reflejo de la alegría que traes a mi vida. <br> <br>
-      Gracias por iluminar mis días con tu presencia.</h1>
+    <h1 class="titulo">Estas no son las flores que quisiera darte, pero te las envío porque, al igual que este día, tú me eres muy especial &lt;3 <br> <br>
+      Atte.: Anderson</h1>
   
     <div class="night"></div>
     <div class="flowers">
@@ -326,6 +344,18 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal de la Cartita (solo visible al abrir la cartita) -->
+    <div id="letterModal" class="letter-modal" onclick="closeLetterModal(event)">
+      <div class="letter-modal-content" onclick="event.stopPropagation()">
+        <button class="letter-modal-close" onclick="closeLetterModal(event)">×</button>
+        <div class="letter-img-container">
+          <img src="img/business_cat.jpg" alt="Michi con flor" class="letter-cat-img" />
+        </div>
+        <h2 class="letter-cat-text">Feliz 21 de septiembre &lt;3</h2>
+      </div>
+    </div>
+
     <script src="anim.js"></script>
     <script src="main.js"></script>
   </body>

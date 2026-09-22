@@ -2,6 +2,31 @@
 var audio = document.querySelector("audio");
 var lyrics = document.querySelector("#lyrics");
 
+// Función para intentar reproducir el audio
+function iniciarAudio() {
+  if (audio && audio.paused) {
+    var playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function (error) {
+        console.log("Autoplay en espera de interacción:", error);
+      });
+    }
+  }
+}
+
+// Intentar reproducir al cargar la página
+window.addEventListener("load", iniciarAudio);
+iniciarAudio();
+
+// Si el navegador bloqueó la reproducción automática, reproducir con el primer clic o toque
+document.addEventListener("click", function () {
+  iniciarAudio();
+}, { once: true });
+
+document.addEventListener("touchstart", function () {
+  iniciarAudio();
+}, { once: true });
+
 // Array de objetos que contiene cada línea y su tiempo de aparición en segundos
 var lyricsData = [
   { text: "At the time", time: 15 },
@@ -55,7 +80,7 @@ function updateLyrics() {
   }
 }
 
-setInterval(updateLyrics, 1000);
+setInterval(updateLyrics, 500);
 
 //funcion titulo
 // Función para ocultar el título después de 216 segundos
@@ -70,3 +95,21 @@ function ocultarTitulo() {
 
 // Llama a la función después de 216 segundos (216,000 milisegundos)
 setTimeout(ocultarTitulo, 216000);
+
+// Lógica de la Cartita y el Michi de Negocios
+function openLetterModal() {
+  var modal = document.getElementById("letterModal");
+  if (modal) {
+    modal.style.display = "flex";
+  }
+}
+
+function closeLetterModal(event) {
+  if (event) {
+    event.stopPropagation();
+  }
+  var modal = document.getElementById("letterModal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
